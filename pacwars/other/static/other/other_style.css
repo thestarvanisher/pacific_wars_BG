@@ -1,0 +1,121 @@
+body, html{
+	margin: 0;
+	padding: 0;
+}
+@font-face{
+	font-family: mainfont;
+	src: url('miroslav.ttf');
+}
+#page{
+	width: 100%;
+	height: 100%;
+	text-align: center;
+}
+#titlearea{
+	height: 90px;
+	font-size: 50px;
+	width: calc(100% - 10px);
+	text-align: left;
+	padding-left: 10px;
+	font-family: mainfont;
+	margin-bottom: 5px;
+}
+#content{
+	width: 80%;
+	
+	max-width: 800px;
+	display: inline-block;
+	
+}
+input[type="text"]{
+	height: 30px;
+	border: 2px black solid;
+	border-radius: 5px;
+	margin-bottom: 5px;
+	padding-left:5px;
+	padding-right: 5px;
+	width: calc(100% - 14px);
+	font-size: 20px;
+	background-color: white !important;
+
+}
+input[type="email"]{
+	height: 30px;
+	border: 2px black solid;
+	border-radius: 5px;
+	margin-bottom: 5px;
+	padding-left:5px;
+	padding-right: 5px;
+	width: calc(100% - 14px);
+	font-size: 20px;
+	background-color: white !important;
+}
+input:-webkit-autofill {
+    background-color: white !important;
+}
+textarea{
+	height: 300px;
+	min-height: 300px;
+	border: 2px black solid;
+	border-radius: 5px;
+	margin-bottom: 5px;
+	padding-left:5px;
+	padding-right: 5px;
+	width: calc(100% - 14px);
+	font-size: 20px;
+	#resize: none;
+	resize:vertical;
+}
+input[type="submit"]{
+	height: 34px;
+	border: 2px #880404 solid;
+	border-radius: 5px;
+	margin-bottom: 5px;
+	padding-left:5px;
+	padding-right: 5px;
+	#width: calc(100% - 14px);
+	width: 100%;
+	font-size: 20px;
+	color: #880404;
+	cursor: pointer;
+	background-color: white;
+	margin-top: 5px;
+}
+input[type="submit"]:hover{
+	
+
+	background-color: #880404;
+	color: white;
+}
+#infotext{
+	font-size: 20px;
+	margin-bottom: 10px;
+	text-align: justify;
+}
+#systemmessage{
+	font-size: 20px;
+	margin-bottom: 20px;
+	width: 100%;
+	background-color: #FFDB58;
+	color: red;
+	padding-bottom: 10px;
+	display: none;
+}
+#closebutton{
+	position: relative;
+	top: 0;
+	left: calc(100% - 10px);
+	width: 10px;
+	height: 10px;
+	display: block;
+	#background-color: red;
+	color: red;
+	font-size: 8px;
+	cursor: default;
+
+}
+address{
+	text-align: center;
+	font-size: 14px;
+	margin-bottom: 10px;
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	{% load static %}
+	<title>{{ battle.battle_name }}</title>
+	<link rel="icon" href="{% static 'info/favicon.ico' %}">
+	<link type="text/css" rel="stylesheet" href="{% static 'info/blockdesign.css'%}">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<script src="{% static 'info/slidescript.js' %}"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+</head>
+<body>
+
+	<div id="myblock">
+	{% csrf_token %}
+	<h1>{{ battle.battle_name }}</h1>
+
+		<div id="leftside">
+			<div class="info" title="Място на битката"><i class="fas fa-map-marker"></i>{{ battle.real_location }}</div>
+			<div class="info" title="Начало - Край на битката"><i class="fas fa-calendar-alt"></i>{{ battle.starting_date }} - {{ battle.ending_date }}</div>
+			<div class="info" title="Общ брой войници от всички страни"><i class="fas fa-male"></i>{{ battle.total_strength }}</div>
+			<div class="info" title="Общ брой жертви"><i class="fas fa-skull"></i>{{ battle.total_losses }}</div>
+			{% if countries %}
+			<div class="info" title="Държави-участници"><i class="fas fa-globe"></i>
+				{% for country in countries %}
+					{% if forloop.counter == countries.count %}
+						{{ country.shortened }}
+					{% else %}
+						{{ country.shortened }},
+					{% endif %}
+				{% endfor %}
+			</div>
+			{% endif %}
+			{% with 'search/images/imagedb/'|add:photo.photo_id as image_static %}
+			 <div id="photoblock"><img id="centralphoto" src="{% static image_static %}" /></div>
+			{% endwith %}
+			<div id="description">{{ battle.description }}</div>
+		</div>
+	{% with 'search/images/imagedb/'|add:photo.photo_id as image_static %}
+	<div id="rightside"> <img id="myphoto" src="{% static image_static %}" /></div>
+
+	{% endwith %}
+		<div id="options"><div id="arrowhead"> &#708;</div>
+		<div id="buttons">
+			<div id="bcontainer">
+				<button id="print" class="bbutton" >печат</button><button id="mode" class="bbutton">
+				стандартен</button>
+				<!--<button id="other" class="bbutton">
+				друго</button>-->
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

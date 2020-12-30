@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+	<title>Карта</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	{% load static %}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+	<script src="{% static 'map/jquery.imagemapster.min.js' %}"></script>
+	<link rel="icon" href="{% static 'map/favicon.ico' %}">
+	<link type="text/css" rel="stylesheet" href="{% static 'map/mapstyle.css' %}"/>
+	<link type="text/css" rel="stylesheet" href="{% static 'map/style_of_menu.css' %}"/>
+	<link type="text/css" rel="stylesheet" href="{% static 'map/battle_style.css' %}"/>
+	<link type="text/css" rel="stylesheet" href="{% static 'map/style_battletags.css' %}"/>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+
+</head>
+<body>
+<div class="arrowd" id="uparr">
+	<b>&#709;</b>
+</div>
+
+
+<div id="menu">
+
+
+		<!--<ul class="dmenu">
+			<li><a href="#">Начало</a></li><li>
+			<a href="#">Карта</a></li>
+		</ul>
+
+		<ul class="dmenu">
+			<li><a href="#">Търсене</a></li><li>
+			<a href="#">Инфо</a></li>
+		</ul>-->
+	<ul class="dmenu">
+			<li onclick="window.location = '{% url 'home:home' %}'"><a href="#">Начало</a></li><li onclick="window.location = '{% url 'map:map' %}'">
+			<a class="alink" href="#">Карта</a></li>
+			<img id="logos" src="{% static 'search/images/ship4.png' %}" height="76"/>
+			<li onclick="window.location = '{% url 'search:index' %}'"><a href="#">Търсене</a></li><li onclick="window.location = '{% url 'other:other' %}'">
+			<a href="#">Друго</a></li>
+		</ul>
+
+
+</div>
+
+<div id="outerFirst">
+<div id="innerFirst">
+<img id="maps" src="{% static 'map/mapmap.png' %}" height="108" width="192" usemap="#mymap"/>
+<map name="mymap" id="themap">
+	<!--<area shape="poly" coords="3555,1876,3562,1892,3565,1915,3572,1930,3580,1948,3601,1957,3615,1961,3621,1949,3621,1936,3628,1924,3637,1916,3638,1903,3645,1897,3656,1889,3668,1888,3685,1889,3698,1894,3711,1910,3721,1910,3721,1898,3728,1886,3739,1879,3753,1868,3769,1861,3765,1847,3763,1838,3758,1829,3764,1823,3781,1814,3781,1802,3776,1795,3771,1790,3766,1796,3760,1807,3751,1810,3733,1810,3722,1805,3711,1802,3697,1801,3691,1807,3685,1816,3681,1829,3675,1835,3644,1837,3632,1834,3627,1829,3610,1828,3596,1838,3590,1852,3586,1859,3577,1870,3565,1874" href="#" id="island">-->
+	<!--<area id="china-1" alt="" title="" href="#" shape="poly" coords="3237,6,3297,47,3316,133,3357,200,3494,205,3556,148,3621,107,3676,119,3664,200,3614,268,3571,352,3532,414,3460,481,3395,548,3340,623,3319,704,3371,820,3367,853,3244,937,3237,949,3062,1079,2944,1168,2841,1304,2779,1295,2752,1172,2663,1151,2587,1249,2440,1302,2356,1348,2373,1472,2440,1532,2507,1549,2615,1520,2647,1482,2687,1472,2719,1487,2735,1511,2680,1540,2606,1590,2563,1638,2522,1686,2493,1736,2551,1835,2589,1878,2615,1926,2680,2029,2702,2063,2699,2101,2661,2149,2589,2183,2524,2214,2483,2682,2320,2840,2147,2888,1828,2874,1475,2944,1317,2903,1003,2872,794,2934,734,2795,777,2596,566,2533,340,2531,179,2605,0,2720,0,697,0,676,100,750,206,815,287,942,357,1021,511,1115,676,1163,859,1204,1063,1261,1238,1312,1372,1264,1538,1213,1696,1211,1821,1127,1888,1045,1929,940,1898,853,1941,829,2075,841,2174,769,2275,690,2327,642,2354,572,2416,520,2493,469,2587,479,2654,400,2594,308,2500,289,2354,248,2301,301,2222,244,2255,148,2337,97,2440,66,2464,8" style="outline:none;" target="_self"     />-->
+{% autoescape on %}
+    {{ map|safe }}
+{% endautoescape %}
+
+</map>
+
+<!--<div  id="rsq">Hello</div>-->
+<!--<div id="battlec"></div>-->
+
+<!--</div>-->
+<div id="battlewindow">
+
+	<!--<img src="{% static 'map/battle-sign.png' %}" id="mappos1"/>-->
+	{% if battles %}
+		{% for battle in battles %}
+	<div class="bxs" id="bx{{ battle.id }}" onclick="window.location = '{% url 'info:getinfo' battle.battle_code_id %}'"><img src="{% static 'map/battle-sign.png' %}" id="mappos{{ battle.id }}" class="maptag" data-location-left="{{ battle.location_left }}" data-location-top="{{ battle.location_top }}"/><span class="tooltiptext">{{ battle.description }}</span></div>
+		{% endfor %}
+	{% endif %}
+	{% if groups %}
+		{% for group, lf, tp, ln in groups %}
+			<!--<div class="clickable" id="group{{ forloop.counter }}"></div>-->
+			<img src="{% static 'map/target.png' %}" class="clickable" id="group{{ forloop.counter }}" data-location-left="{{ lf }}" data-location-top="{{ tp }}" data-number-elements="{{ ln }}"/>
+			<div class="group" id="gr{{ forloop.counter }}" data-location-left="">
+				{% for b in group %}
+				<div class="bxs2" id="bx2{{ b.id }}" onclick="window.location = '{% url 'info:getinfo' b.battle_code_id %}'"><img src="{% static 'map/battle-sign.png' %}" id="hiddenmap{{ b.id }}" class="hiddenmaps"/><span class="tooltiptext">{{ b.description }}</span></div>
+				{% endfor %}
+
+			</div>
+		{% endfor %}
+	{% endif %}
+
+</div>
+</div>
+
+
+
+
+<!--<div class="arrowd" id="darr">
+	<b>&#708;</b>
+</div>-->
+
+<div id="bmenu">
+hello
+</div>
+
+<div id="smallscreen">За съжаление тази версия не поддържа екрани с такава резолюция!</div>
+<div id="loadingscreen">Зареждане...</div>
+
+
+
+
+<!--<div  id="rsq" ><img src="the_pacific.png" id="tpf" width="160" height="90" usemap="#planetmap"><div id="btn"></div></div>-->
+
+<!--<div id="btn"></div>-->
+<!--<map name="planetmap">
+  <area shape="rect" coords="800,50,1600,800" alt="Venus" href="#">
+</map>-->
+
+<script src="{% static 'map/mapscript.js' %}"></script>
+<script src="{% static 'map/loadbattles.js' %}"></script>
+<script>
+
+
+	/*var myyear = 2018;
+	$(document).ready(function(){
+
+	$.ajax({
+		url: '{% url "map:mapupdate" %}',
+		data: {
+			year: myyear
+		},
+		dataType: 'json',
+		success: function(data){
+		console.log("Done updating" + data.year);
+			document.getElementById("themap").innerHTML = data.year;
+			$('#maps').mapster({
+		 	mapKey: 'data-key',
+         	//fillColor: 'ff0000',
+         	//fillOpacity: 0.6,
+         	render_highlight: {
+       			//fillColor: '2aff00',
+        		//stroke: true,
+       			altImage: '{% static "map/map-final.png" %}'
+    			},
+			});
+			//resizeMe();
+			loadContent();
+		}
+
+
+
+	});
+	});
+*/
+
+$(document).ready(function(){
+
+	loadContent();
+
+		$('#maps').mapster({
+			fillOpacity: 1,
+		 	mapKey: 'data-key',
+		 	isSelectable: false,
+         	render_highlight: {
+       			altImage: '{% static "map/map-final.png" %}'
+    			},
+			});
+			//resizeMe();
+
+});
+
+</script>
+
+</body>
+</html>

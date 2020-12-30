@@ -1,0 +1,13 @@
+body{
+	background-color: blue;
+}
+#maincontent{
+	background-color: green;
+	width: 100%;
+	text-align: center;
+}
+address{
+margin-bottom: 10px;
+font-size:14px;
+text-align: center;
+}

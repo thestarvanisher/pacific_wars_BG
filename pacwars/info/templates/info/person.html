@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	{% load static %}
+	<title>{{ person.shortened_name }}</title>
+	<link rel="icon" href="{% static 'info/favicon.ico' %}">
+	<link type="text/css" rel="stylesheet" href="{% static 'info/blockdesign.css'%}">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<script src="{% static 'info/slidescript.js' %}"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+</head>
+<body>
+
+	<div id="myblock">
+	{% csrf_token %}
+	<h1>{{ person.shortened_name }}</h1>
+
+		<div id="leftside">
+            <b>Пълно име:</b> {{ person.name }} <br>
+            <b>Служил на:</b> {{ country.shortened }}<br>
+            {% if person.achievements %}
+            <b>Орден(и):</b> {{ person.achievements }}<br>
+            {% endif %}
+            <b>Съдба:</b> {{ person.fate }}<br>
+			{% with 'search/images/imagedb/'|add:photo.photo_id as image_static %}
+			 <div id="photoblock"><img id="centralphoto" src="{% static image_static %}" /></div>
+			{% endwith %}
+		</div>
+	{% with 'search/images/imagedb/'|add:photo.photo_id as image_static %}
+	<div id="rightside"> <img id="myphoto" src="{% static image_static %}" /></div>
+
+	{% endwith %}
+		<div id="options"><div id="arrowhead"> &#708;</div>
+		<div id="buttons">
+			<div id="bcontainer">
+				<button id="print" class="bbutton" >печат</button><button id="mode" class="bbutton">
+				стандартен</button>
+				<!--<button id="other" class="bbutton">
+				друго</button>-->
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

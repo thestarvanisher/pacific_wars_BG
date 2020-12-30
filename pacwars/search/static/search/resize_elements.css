@@ -1,0 +1,71 @@
+@media screen and (min-width: 751px){
+	input[list=ffields]{
+		width:calc(calc(100% - 48px) / 2);
+		font-size:20px;
+	}
+	input[type=text]{
+		width: calc(calc(100% - 65px) / 2);
+		font-size:20px;
+	}
+
+}
+
+
+
+@media screen and (max-width: 750px){
+	input[list=ffields]{
+		#width:200px;
+		width:calc(calc(100% - 48px) / 2);
+		font-size: 16px;
+		
+	}
+	input[type=text]{
+		#width: 200px;
+		width:calc(calc(100% - 48px) / 2);
+		font-size: 16px;
+	}
+
+}
+
+
+@media screen and (max-width: 700px){
+	.entrytitle{
+		font-size: 1.5em;
+	}
+	.entryright{
+		display: none;
+	}
+	.entryleft{
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 510px){
+	.entrydescription{
+		display: none;
+	}
+	.entry{
+
+		height: 100px;
+		vertical-align: middle;
+	}
+	.entrytitle{
+		height: 100px;
+		vertical-align: middle;
+		display: table-cell;
+		;
+	}
+	.entryleft{
+		display: table;
+	}
+	input[list=ffields]{
+		width: calc(100% - 9px);
+	}
+	input[type=text]{
+		width: calc(100% - 35px);
+	}
+	.afield{
+		margin-bottom: 5px;
+		border-bottom: black solid 2px;
+	}
+}

@@ -1,0 +1,65 @@
+body, html{
+	padding: 0;
+	margin: 0;
+	background-color: #002860;
+
+}
+#mainimage{
+	width: 100%;
+	height: auto;
+	display: block;
+}
+#piccontainer{
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	background-color: #002860;
+	overflow: hidden;
+}
+#content{
+	width: 100%;
+	background-color: #002860;
+	color: white;
+	#font-size: 16px;
+	text-align: center;
+	padding-bottom: 24px;
+}
+h1{
+	text-align: center;
+}
+#textcont{
+	position: relative;
+	width: 80%;
+	text-align: left;
+	font-size: 18px;
+	max-width: 1000px;
+	font-family: Arial;
+	display: inline-block;
+	text-align: justify;
+	
+	
+}
+a{
+	text-decoration: underline;
+	color: white;
+}
+address{
+	text-align: center;
+	font-size: 14px;
+	margin-top: 10px;
+}
+@media screen and (max-width: 580px){
+	#textcont{
+		font-size: 16px;
+		width: 96%;
+		margin-left: 2%;
+		margin-right: 2%;
+		
+	}
+	address{
+		font-size: 12px;
+	}
+	h1{
+		font-size: 18px;
+	}
+}

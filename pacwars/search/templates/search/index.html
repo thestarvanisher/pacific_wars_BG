@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Търсене</title>
+	{% load static %}
+
+
+	<link type="text/css" rel="stylesheet" href="{% static 'search/style_of_index.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'search/style_of_menu.css' %}" />
+	<link type="text/css" rel="stylesheet" href="{% static 'search/style_of_found.css' %}" />
+	<link type="text/css" rel="stylesheet" href="{% static 'search/modal_window.css' %}" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link type="text/css" rel="stylesheet" href="{% static 'search/style_of_search_fields.css' %}" />
+	<link type="text/css" rel="stylesheet" href="{% static 'search/resize_elements.css' %}" />
+	<script src="{% static 'search/search_fields.js'%}"></script>
+	<script src="{% static 'search/menuscript.js'%}"></script>
+	<script src="{% static 'search/entryscript.js'%}"></script>
+	<link rel="icon" href="{% static 'search/favicon.ico' %}">
+</head>
+<body>
+<div class="arrowd" id="uparr">
+	<b>&#709;</b>
+</div>
+<div id="menu">
+
+
+		<!--<ul class="dmenu">
+			<li><a href="#">Начало</a></li><li>
+			<a href="#">Карта</a></li>
+		</ul>
+
+		<ul class="dmenu">
+			<li><a href="#">Търсене</a></li><li>
+			<a href="#">Инфо</a></li>
+		</ul>-->
+	<ul class="dmenu">
+			<li onclick="window.location = '{% url 'home:home' %}'"><a href="#">Начало</a></li><li onclick="window.location = '{% url 'map:map' %}'">
+			<a class="alink" href="#">Карта</a></li>
+			<img id="logos" src="{% static 'search/images/ship4.png' %}" height="76"/>
+			<li onclick="window.location = '{% url 'search:index' %}'"><a href="#">Търсене</a></li><li onclick="window.location = '{% url 'other:other' %}'">
+			<a href="#">Друго</a></li>
+		</ul>
+
+
+</div>
+
+
+<!--{% if allBattles %}
+    <ul>
+        {% for battle in allBattles %}
+        <li><a href="{{ battle.battle_id }}/">{{ battle.battle_name }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <h3>Nothing here</h3>
+{% endif %}-->
+<div id="textstuff">
+Търсене
+</div>
+<div id="maincontent">
+<div id="sfield">
+<form action="{% url 'search:results' %}" method="post" id="myform">
+{% csrf_token %}
+
+</form>
+
+</div>
+
+<div id="container">
+{% if allBattles or people%}
+
+	{% if allBattles and people %}
+		<div class="nfound">Намерени: {{ number_battles }} битки, {{ number_people }} личности</div>
+	{% elif allBattles %}
+		<div class="nfound">Намерени: {{ number_battles }} битки</div>
+	{% else %}
+		<div class="nfound">Намерени: {{ number_people }} личности</div>
+	{% endif %}
+
+
+	{% for battle, photo in allBattles %}
+	<!--{{ battle.battle_code }}-->
+	{% with battle.battle_id as battle_link %}
+	<div class="entry" onclick="window.location = '{% url 'info:getinfo' battle_link %}'">
+	{% endwith %}
+		<div class="entryleft">
+			<div class="entrytitle">{{ battle.battle_name }}</div>
+			<div class="entrydescription"><div class="inc">{{ battle.description|make_list|slice:':150'|join:''|add:'...' }}</div></div>
+		</div>
+		<div class="entryright">
+		{% with 'search/images/imagedb/'|add:photo.photo_id as image_static %}
+		<div class="entryphoto"><img src="{% static image_static %}"></div>
+		{% endwith %}
+		<div class="entryphotodescr"></div>
+		</div>
+
+	</div>
+	{% endfor %}
+
+	{% for person, photo in people %}
+	<!--{{ battle.battle_code }}-->
+
+	<div class="entry entry2" onclick="window.location = '{% url 'info:getperson' person.name_id %}'">
+
+		<div class="entryleft">
+			<div class="entrytitle">{{ person.shortened_name }}</div>
+			<div class="entrydescription"><div class="inc"><b>Име:</b> {{ person.name|linebreaksbr }} <br>
+
+				{% if person.achievements %}
+				<b>Орден(и):</b> {{ person.achievements|linebreaksbr }} <br>
+				{% endif %}
+				<b>Съдба:</b> {{ person.fate }}
+			</div>
+			</div>
+		</div>
+		<div class="entryright">
+		{% with 'search/images/imagedb/'|add:photo.photo_id as image_static %}
+		<div class="entryphoto"><img src="{% static image_static %}"></div>
+		{% endwith %}
+		<div class="entryphotodescr"></div>
+		</div>
+
+	</div>
+	{% endfor %}
+
+
+{% else %}
+	<h3>Нищо не е намерено</h3>
+{% endif %}
+</div>
+	<address>Проект "Тихоокеанска война", 2018</address>
+</div>
+
+
+<div class="infowindow">
+	<div class="info-content">
+		<span class="info-close">&times;</span>
+		<p>При натискането на бутона със знак "+" се добавят нови полета.<br>
+			Вутонът със знак "∪" показва, че се обединяват различните резултати. При натискането му се превръща в бутон със знак "∩".<br>
+			Бутонът със знак "∩" показва, че се търси сечението. При натискането му се превръща в бутон със знак "∪".<br>
+			Бутонът със знак "≡" отваря сортиращия прозорец.<br>
+			Бутонът със знак "?" отваря този прозорец.
+		</p>
+
+	</div>
+</div>
+
+<div class="infowindow">
+	<div class="info-content">
+		<span class="info-close">&times;</span>
+		<h2>Сортиране по:</h2>
+		<h5 id="specialmessage">Ще сортира само ако съществуват съответните търсещи критерии! Сортира по дата по подразбиране!</h5>
+		<label class="checks">Име на битка
+			<input form="myform" type="checkbox" name="sort_bname" value="name" class="chk">
+			<span class="checkmark"></span>
+		</label>
+		<label class="checks">Дата на започване
+			<input form="myform" type="checkbox" name="sort_bbegdate" value="begdate" class="chk">
+			<span class="checkmark"></span>
+		</label>
+		<label class="checks">Дата на завършване
+			<input form="myform" type="checkbox" name="sort_benddate" value="enddate" class="chk">
+			<span class="checkmark"></span>
+		</label>
+		<label class="checks">Общ брой войници(нарастващ ред)
+			<input form="myform" type="checkbox" name="sort_bstrength" value="total" class="chk">
+			<span class="checkmark"></span>
+		</label>
+		<label class="checks">Общ брой войници(намалящ ред)
+			<input form="myform" type="checkbox" name="sort_bstrength" value="rtotal" class="chk">
+			<span class="checkmark"></span>
+		</label>
+		<label class="checks">Общ брой жертви(нарастващ ред)
+			<input form="myform" type="checkbox" name="sort_blosses" value="losses" class="chk">
+			<span class="checkmark"></span>
+		</label>
+		<label class="checks">Общ брой жертви(намалящ ред)
+			<input form="myform" type="checkbox" name="sort_blosses" value="rlosses" class="chk">
+			<span class="checkmark"></span>
+		</label>
+
+	</div>
+</div>
+
+<script src="{% static 'search/modal.js'%}"></script>
+
+</body>
+</html>

@@ -1,0 +1,161 @@
+#battlewindow{
+
+	position: absolute;
+
+}
+
+.hiddenmaps{
+	height: 100%;
+	width: auto;
+
+}
+.bxs2{
+	float: left;
+	#display: inline-block;
+	#position: absolute;
+	position: relative;
+	height: 90%;
+	#top: 5%;
+	margin-left: 3px;
+	cursor: pointer;
+	
+
+
+}
+
+.bxs .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 103;
+    bottom: 150%;
+    left: 50%;
+    padding-right: 5px;
+    padding-left: 5px;
+    margin-left: -65px;
+}
+
+.bxs .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+.bxs:hover {
+	z-index: 103;
+}
+.bxs:hover .tooltiptext {
+    visibility: visible;
+}
+
+.bxs2 .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 103;
+    bottom: 150%;
+    left: 50%;
+    padding-right: 5px;
+    padding-left: 5px;
+    margin-left: -65px;
+}
+
+.bxs2 .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+.bxs2:hover {
+	z-index: 103;
+}
+.bxs2:hover .tooltiptext {
+    visibility: visible;
+}
+
+
+#smallscreen{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 150;
+	background-color: white;
+	color: red;
+	display: none;
+}
+
+#loadingscreen{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 140;
+	background-color: white;
+	text-align: center;
+	line-height: 100vh;
+	vertical-align: middle;
+	font-size: 36px;
+
+	
+}
+@media (max-height: 436px) and (max-width: 1000px){
+	.bxs .tooltiptext{
+		font-size: 10px;
+		width: 100px;
+		margin-left: -55px;
+		
+
+	}
+	.bxs2 .tooltiptext{
+		font-size: 10px;
+		width: 100px;
+		margin-left: -55px;
+		
+	}
+}
+
+@media (max-width: 1000px) and (min-height: 436px){
+	.bxs .tooltiptext{
+		font-size: 12px;
+		width: 100px;
+		margin-left: -55px;
+
+	}
+	.bxs2 .tooltiptext{
+		font-size: 12px;
+		width: 100px;
+		margin-left: -55px;
+	}
+}
+
+@media (max-width: 490px){
+	#smallscreen{
+		display: block;
+	}
+}
+@media (max-height: 260px){
+	#smallscreen{
+		display: block;
+	}
+}

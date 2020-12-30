@@ -1,0 +1,36 @@
+body{
+	margin: 0;
+	padding: 0;
+}
+@font-face{
+	font-family: mainfont;
+	src: url('miroslav.ttf');
+}
+#pagecont{
+	width:100%;
+	height: 100%;
+	text-align: center;
+}
+#titlearea{
+	height: 90px;
+	font-size: 50px;
+	width: calc(100% - 10px);
+	text-align: left;
+	padding-left: 10px;
+	font-family: mainfont;
+	margin-bottom: 5px;
+}
+#errorcode{
+
+	width: 80%;
+	max-width: 1000px;
+	font-size: 18px;
+	display: inline-block;
+	margin-top: 95px;
+
+}
+address{
+	text-align: center;
+	font-size: 14px;
+	margin-bottom: 10px;
+}
