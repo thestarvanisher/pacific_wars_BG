@@ -1,5 +1,5 @@
 # Pacific wars 
-A website dedicated to the Pacific wars during WW2. Originally created for a school project. The website uses Django as a back-end framework. 
+A website dedicated to the Pacific wars during WW2. Originally created for a school project. The website uses Django as a back-end framework. *The website content is in Bulgarian as it was required by the school at the time.*
 
 ## Features
 ### Interactive map
