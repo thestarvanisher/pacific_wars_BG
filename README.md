@@ -30,5 +30,16 @@ The project was intended as a school project. The assignment was to demonstrate 
 ## Warning
 The project was originally developed in Python 3.5 and Django < 2. Some code was corrected in order to allow the website to run on Python 3.9 and Django 3.1. There might be some small errors because of this conversion.
 
+## How to run?
+First you need to copy import the database file. To do so, under Windows you can run the following:
+```
+psql -U username -d databasename -f pacwarsdb.pgsql
+```
+You also need to edit the `settings.py` file for the database settings - change the name, password, port fields. 
+
+Afterwards, you can run the Django as usual or setup a server. 
+
+**Note:** The page with the form for sending a message has a Captcha. You have to edit the Captcha key, which you can find in the `settings.py` file. You should do this if you intend to run it on a server. Also, the Captcha works only with the **DEBUG**=*false*. 
+
 
 
